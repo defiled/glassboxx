@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # Initialize the GlassBoxx SDK
-glassboxx.init(app, api_key="your_test_api_key", db_string="your_db_connection_string", ui_path='/glassboxx')
+glassboxx.init(app, api_key="your_test_api_key", db_string="postgresql://postgres:T5fkbECXseomHEz1@org-pegasus-ventures-inst-glassboxx.data-1.use1.tembo.io:5432/postgres", ui_path='/glassboxx')
 
 # Define the path to the static files relative to the location of glassboxx package
 static_files_path = os.path.dirname(glassboxx.__file__)

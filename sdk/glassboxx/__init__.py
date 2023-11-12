@@ -19,13 +19,9 @@ def init(app, api_key, db_string=None, ui_path='/glassboxx'):
     _config['db_string'] = db_string
     _config['ui_endpoint'] = ui_path
 
-    # Initialize the database connection if `db_string` is provided
-    if db_string:
-        init_db(db_string)
-    # else:
-    #     # If no db_string is provided, prepare to send data to glassboxx servers using `api_key`
-    #     # TODO: Implement the logic to send data to glassboxx servers using `api_key`
-
+    # Initialize the database connection
+    init_db(db_string)
+    
     serve_ui(app, _config['ui_endpoint'])
 
 
