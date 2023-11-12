@@ -1,0 +1,3 @@
+flask
+-e /app/sdk 
+# "editable" mode - changes to the local code will immediately affect the test_server without needing to reinstall the package.
