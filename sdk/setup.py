@@ -7,4 +7,10 @@ setup(
     include_package_data=True,
     package_data={
         '': ['build/*', 'build/static/*/*'],
-    },)
+    },
+    install_requires=[
+        'requests',
+        'datetime',
+        'setuptools'
+    ],
+)

@@ -1,27 +1,21 @@
 import os
 from flask import Flask, send_from_directory
-from .logger import log_input, log_output
+import requests
+from .logger import log
 from .explainer import explain
 from .database import init_db
-
-# Internal SDK configuration
-_config = {
-    'api_key': None,
-    'db_string': None,
-    'ui_endpoint': '/glassboxx'
-}
+from .config import get_config
 
 def init(app, api_key, db_string=None, ui_path='/glassboxx'):
     """
     Initializes the SDK with the given configuration.
     """
+    _config = get_config()
     _config['api_key'] = api_key
     _config['db_string'] = db_string
     _config['ui_endpoint'] = ui_path
+    _config['db_connection'] = init_db(db_string)
 
-    # Initialize the database connection
-    init_db(db_string)
-    
     serve_ui(app, _config['ui_endpoint'])
 
 
@@ -104,6 +98,9 @@ def download_all_files_from_cdn(cdn_manifest_url, local_dir):
     """
     Download all files listed in the CDN manifest to a local directory.
     """
+    cdn_base_url = 'https://my.cdn.provider/path/to/files'
+    # cdn_manifest_url = f"{cdn_base_url}/manifest.txt"  # URL to manifest file on CDN
+
     # Download the manifest file containing the list of files
     manifest_response = requests.get(cdn_manifest_url)
     manifest_response.raise_for_status()
@@ -120,10 +117,4 @@ def download_all_files_from_cdn(cdn_manifest_url, local_dir):
 
     print(f"Downloaded all files from CDN to {local_dir}")
 
-# # Example usage:
-# cdn_base_url = 'https://your.cdn.provider/path/to/files'
-# cdn_manifest_url = f"{cdn_base_url}/manifest.txt"  # URL to your manifest file on CDN
-# local_dir = 'path/to/local/directory'  # Local directory to store the files
-# download_all_files_from_cdn(cdn_manifest_url, local_dir)
-
-__all__ = ['init', 'get_ui_path', 'log_input', 'log_output', 'explain']
+__all__ = ['init', 'get_ui_path', 'log', 'explain']

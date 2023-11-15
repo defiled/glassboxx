@@ -2,6 +2,10 @@
 
 The Glassboxx SDK (`glassboxx`) is a Python package providing AI/ML functionalities including logging, explanation, and a Flask server to serve a React-based UI.
 
+-   private, works on your existing infrastructure and no data is shared
+-   you can use our servers if you choose to or do not have a DB
+-   seamless integration into productionized environment
+
 ## Installation
 
 Instructions on how to install the package, either from PyPI or locally for development.

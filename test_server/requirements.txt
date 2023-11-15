@@ -3,3 +3,5 @@ flask
 # "editable" mode - changes to the local code will immediately affect the test_server without needing to reinstall the package.
 psycopg2
 mysql-connector-python
+torch
+numpy

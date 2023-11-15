@@ -1,11 +1,4 @@
 import importlib
-import re
-
-# Global configuration object
-global_config = {
-    'api_key': 'your_api_key_here',
-    'db_connection': None
-}
 
 def create_connection(db_type, connection_string):
     """ Create a database connection based on the database type """
@@ -68,7 +61,7 @@ def log_tables_and_contents(conn, db_type):
         rows = cur.fetchall()
         for row in rows:
             print(row)
-            
+
 def init_db(connection_string):
     """
     Initializes the database connection.
@@ -118,8 +111,7 @@ def init_db(connection_string):
             # Log tables and their contents
             log_tables_and_contents(conn, db_type)
 
-            # Store the connection in the global config
-            global_config['db_connection'] = conn
+            return conn
         else:
             print("Error! Cannot create the database connection.")
     else:
