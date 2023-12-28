@@ -54,13 +54,13 @@ def log_tables_and_contents(conn, db_type):
     tables = cur.fetchall()
     for table in tables:
         table_name = table[0]
-        print(f"Table: {table_name}")
+        # print(f"Table: {table_name}")
 
         # Query to print table contents
         cur.execute(f"SELECT * FROM {table_name}")
         rows = cur.fetchall()
-        for row in rows:
-            print(row)
+        # for row in rows:
+        #     print(row)
 
 def init_db(connection_string):
     """

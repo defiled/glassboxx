@@ -46,6 +46,7 @@ def serve_ui(app, ui_endpoint):
 
     # Set up the GlassBoxx UI route on the user's app
     # TODO: The best solution is to download these static files from a CDN upon __init__
+    # TODO: Don't want to have to import the specific framework to check if instance of, better way
     if isinstance(app, Flask):
         print('Flask app detected!!!!')
         # Flask app
@@ -74,14 +75,14 @@ def serve_ui(app, ui_endpoint):
         # Django app
         # @TODO: Add similar code to integrate with Django's static file serving mechanism
         pass
-    # Add more conditional branches for other types of frameworks
+    # Add more conditional branches for other types of frameworks like FastAPI
 
 # Provide a function to get the UI path to allow the host web server to serve the glassboxx UI
 def get_ui_path():
     """
     Returns the UI path where glassboxx UI should be served.
     """
-    return _config['ui_endpoint']
+    return get_config('ui_endpoint')
 
 def download_file_from_cdn(url, local_path):
     """
